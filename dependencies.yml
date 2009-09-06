@@ -15,6 +15,7 @@ daemons: =1.0.10
 extensions: =0.6.0
 metaid: =1.0
 mongrel: =1.1.5
+spicycode-micronaut: =0.3.0
 # live-console: ~> 0.2
 # waves gems
 functor: =0.6.0

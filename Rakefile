@@ -21,7 +21,7 @@ gem = Gem::Specification.new do |gem|
   runtime_deps.each { | name, version | gem.add_runtime_dependency( name.to_s, version ) }
   developer_deps.each { |name, version| gem.add_development_dependency( name.to_s, version ) }
   gem.files = FileList[ 'templates/**/*', 'templates/**/.gitignore', 'lib/**/*.rb',
-    'lib/**/*.erb', "{doc,samples,templates,test}/**/*" ]
+    'lib/**/*.erb', "{doc,samples,templates,test}/**/*", "dependencies.yml" ]
   gem.has_rdoc = true
   gem.bindir = 'bin'
   gem.executables = [ 'waves' ]
@@ -93,11 +93,6 @@ task( :setup ) do
   # Add build-time dependencies, like this:
   dependencies.each do |dep|
     if gems.find_name(dep.name, dep.version_requirements).empty?
-      if dep.name =~ /spicycode-micronaut/
-        puts "\n\n***\nYou will need to install micronaut by hand.\n  # gem sources -a http://gems.github.com\n   # (sudo) gem install spicycode- micronaut\n\n"
-        raise LoadError, "Required dependency 'micronaut' missing. Install by hand through github gem."
-      end
-
       puts "Installing dependency: #{dep}"
       begin
         require 'rubygems/dependency_installer'
